@@ -1,3 +1,4 @@
+package dto;
 
 public class Product {
 	private final String name;
@@ -5,7 +6,7 @@ public class Product {
 	private int currentAmount=0;
 	private final int fundingPrice;
 	
-	Product(String str){
+	public Product(String str){
 		String[] arr = str.split("/");
 		this.name = arr[0].trim();
 		this.goalAmount = Integer.parseInt(arr[1].trim());
