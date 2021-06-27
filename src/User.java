@@ -1,4 +1,3 @@
-package dto;
 
 public class User {
 	private final String id;
@@ -25,6 +24,6 @@ public class User {
 	
 	public void deposit(int amount) {
 		account += amount;
-		System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ü¾ï¿½ï¿½ï¿½ "+account+"ï¿½ï¿½ ï¿½Ô´Ï´ï¿½.");
+		System.out.println("ÃæÀü ÈÄ ÀÜ¾×Àº "+account+"¿ø ÀÔ´Ï´Ù.");
 	}
 }

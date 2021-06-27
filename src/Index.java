@@ -1,31 +1,14 @@
-import dao.ProductDao;
-import dto.Product;
-import dto.User;
-import util.UserService;
 
 public class Index {
+	static boolean isLoggedIn = false;
 	static User[] userArr = new User[10];
 	static int curUser;
 	static Product[] productArr = new Product[10];
 	static int userNum = 0;
 	static int productNum = 0;
-
-	private static ProductDao productDao;
-
-
-
 	public static void main(String[] args) {
-		start();
-	}
-
-	public static void init() {
-		productDao = new ProductDao();
-
-	}
-
-	private static void start() {
 		while(true) {
-			if(UserService.isCurrentUserLogin()) {//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			if(isLoggedIn) {//·Î±×ÀÎ ¼º°ø
 				ShowPage.showMainMenuPage();
 				int input = UserInput.mainMenuInput();
 				switch(input) {
@@ -40,7 +23,7 @@ public class Index {
 					ShowPage.showRegisterProductPage();
 					String registerProductInput = UserInput.registerProductInput();
 					productArr[productNum++] = new Product(registerProductInput);
-					System.out.println("\nï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+					System.out.println("\n»óÇ°ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
 					break;
 				case 6:
 					ShowPage.showDepositPage();
@@ -48,17 +31,17 @@ public class Index {
 					userArr[curUser].deposit(depositAmount);
 					break;
 				}
-
-			}else {//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+				
+			}else {//·Î±×ÀÎ ½ÇÆÐ
 				while(true) {
 					ShowPage.showLogInMenuPage();
 					int input = UserInput.logInPageInput();
-
+					
 					switch(input) {
 					case 1:
 						ShowPage.showSignInPage();
 						String signInInput = UserInput.signInUserInput();
-//						userArr[userNum++] = new User(signInInput);
+						userArr[userNum++] = new User(signInInput);
 						ShowPage.showSuccessSignInPage();
 						break;
 					case 2:
@@ -66,13 +49,13 @@ public class Index {
 						String logInInput = UserInput.signInUserInput();
 						logIn(logInInput);
 						break;
-					}
-					if(UserService.isCurrentUserLogin()) break;
-				}
+					}	
+					if(isLoggedIn) break;
+				}		
 			}
-		}
+		}		
 	}
-
+	
 	public static void logIn(String logInInput) {
 		String[] arr = logInInput.split("/");
 		String id = arr[0].trim();
@@ -81,12 +64,13 @@ public class Index {
 		for(int i=0;i<userArr.length;i++) {
 			if(userArr[i]!=null) {
 				if(id.equals(userArr[i].getId())&&password.equals(userArr[i].getPassword())) {
-					System.out.println("\nï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
+					System.out.println("\n·Î±×ÀÎ ¼º°ø!!");
+					isLoggedIn = true;
 					curUser = i;
 					return;
 				}
 			}
 		}
-		System.out.println("ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+		System.out.println("ÀÏÄ¡ÇÏ´Â ¾ÆÀÌµð³ª ºñ¹Ð¹øÈ£°¡ ¾ø½À´Ï´Ù.");
 	}
 }
