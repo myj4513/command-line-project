@@ -12,27 +12,16 @@ public class ProductDAO {
 
     public void addProduct(Product product){
         products.add(product);
-        System.out.println("상품이 등록되었습니다.");
     }
 
     public void removeProduct(Product product){
         products.remove(product);
     }
 
-    public void getProductList(){
-        Iterator it = products.iterator();
-        int num =0;
-        while(it.hasNext()){
-            Product product = (Product)it.next();
-            System.out.println(++num+"."+product.getName());
+    public Product getProduct (int i) throws IndexOutOfBoundsException{
+        if(i<=0 || i>products.size()){
+            throw new IndexOutOfBoundsException();
         }
-    }
-
-    public void showProduct(int i){
-        System.out.println(products.get(i-1));
-    }
-
-    public Product getProduct(int i){
         return products.get(i-1);
     }
 }
