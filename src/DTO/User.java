@@ -8,15 +8,15 @@ public class User {
 	private int account = 0;
 	private List<Product> fundingHistory = new LinkedList<Product>();
 	
-	public User(String idpw){
-		String[] strArr = idpw.split("/");
-		this.id = strArr[0].trim();
-		this.password = strArr[1].trim();
+	public User(String id, String password){
+		this.id = id;
+		this.password = password;
 	}
 
 	public String getId(){
 		return this.id;
 	}
+
 	public String getPassword() {
 		return this.password;
 	}
@@ -29,11 +29,6 @@ public class User {
 
 	public void setAccount(int account){
 		this.account = account;
-	}
-	
-	public void deposit(int amount) {
-		account += amount;
-		System.out.println("���� �� �ܾ��� "+account+"�� �Դϴ�.");
 	}
 
 	public String toString(){
