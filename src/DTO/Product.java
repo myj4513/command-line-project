@@ -38,7 +38,7 @@ public class Product {
 	}
 
 	public String toString(){
-		UTIL.ProductService.setCurrentProduct(this);
+		SERVICE.ProductService.setCurrentProduct(this);
 		return "이름 : "+name+"\n목표액 : "+goalAmount+"원\n현재 펀딩액 : "+currentAmount+"원\n달성률 : "+((double)currentAmount/goalAmount*100)+"%\n금액 : "+fundingPrice+"원";
 	}
 }

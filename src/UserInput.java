@@ -48,14 +48,14 @@ public class UserInput {
 	public static boolean isFunding(Product product) {
 		System.out.println("=================================\n");
 		System.out.println(product);
-		System.out.println("\n계좌 잔액은 "+UTIL.UserService.getCurrentUser().getAccount()+"입니다.\n");
+		System.out.println("\n계좌 잔액은 "+ SERVICE.UserService.getCurrentUser().getAccount()+"입니다.\n");
 		while(scanner.hasNextLine()) {
 			scanner.nextLine();
 			System.out.print("펀딩 하시겠습니까?(y/n):");
 			try {
 				if(scanner.nextLine().charAt(0)=='y') {
 					try{
-						if(UTIL.UserService.getCurrentUser().getAccount()>=product.getFundingPrice()){
+						if(SERVICE.UserService.getCurrentUser().getAccount()>=product.getFundingPrice()){
 							return true;
 						}else{
 							throw new Exception("잔액이 부족합니다.");

@@ -2,8 +2,7 @@ import DAO.ProductDAO;
 import DAO.UserDAO;
 import DTO.Product;
 import DTO.User;
-import UTIL.UserService;
-import java.util.*;
+import SERVICE.UserService;
 
 public class Index {
 	private static ProductDAO productDAO;
@@ -50,8 +49,8 @@ public class Index {
 							System.out.println("죄송합니다. 펀딩 내역이 존재하지 않습니다.");
 							break;
 						}
-						UTIL.UserService.showFundingHistory();
-						Product cancelProduct =  UTIL.UserService.getCurrentUser().getFundingHistory().get(UserInput.menuInput()-1);
+						SERVICE.UserService.showFundingHistory();
+						Product cancelProduct =  SERVICE.UserService.getCurrentUser().getFundingHistory().get(UserInput.menuInput()-1);
 						userDAO.cancelFunding(cancelProduct);
 						break;
 					case 4:
@@ -60,7 +59,7 @@ public class Index {
 							System.out.println("죄송합니다. 펀딩 내역이 존재하지 않습니다.");
 							break;
 						}
-						UTIL.UserService.showFundingHistory();
+						SERVICE.UserService.showFundingHistory();
 						break;
 					case 5:
 						ShowPage.showDepositPage();
