@@ -1,7 +1,7 @@
 package Exception;
 
 public class WrongPasswordException extends Exception{
-    public WrongPasswordException(String msg){
-        super(msg);
+    public WrongPasswordException(){
+        super("올바르지 않은 비밀번호입니다.");
     }
 }

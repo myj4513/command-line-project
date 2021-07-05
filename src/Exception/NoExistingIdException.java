@@ -1,7 +1,7 @@
 package Exception;
 
 public class NoExistingIdException extends Exception{
-    public NoExistingIdException(String msg){
-        super(msg);
+    public NoExistingIdException(){
+        super("존재하지 않는 아이디입니다.");
     }
 }

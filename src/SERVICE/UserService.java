@@ -3,8 +3,6 @@ package SERVICE;
 import DAO.UserDAO;
 import DTO.User;
 import Exception.*;
-import DTO.Product;
-import java.util.*;
 
 public class UserService {
     private User currentUser = null;
@@ -21,20 +19,32 @@ public class UserService {
                 currentUser = userDAO.getUsers().get(id);
             } else{
                 //wrong password
-                throw new WrongPasswordException("올바르지 않은 비밀번호입니다.");
+                throw new WrongPasswordException();
             }
         } else{
-            throw new NoExistingIdException("존재하지 않는 아이디입니다.");
+            throw new NoExistingIdException();
         }
     }
 
     public void deposit(int amount) throws InvalidAmountException{
         if(amount <= 0){
-            throw new InvalidAmountException("올바르지 않은 금액입니다.");
+            throw new InvalidAmountException();
         }else{
             int account = currentUser.getAccount();
             currentUser.setAccount(account + amount);
         }
+    }
+
+    public void addAccount(int amount){
+        int curAmount = currentUser.getAccount();
+        currentUser.setAccount(curAmount+amount);
+    }
+
+    public void subtractAccount(int amount)throws NotEnoughMoneyException{
+        int curAmount = currentUser.getAccount();
+        if(curAmount<amount)
+            throw new NotEnoughMoneyException();
+        currentUser.setAccount(curAmount-amount);
     }
 
     public boolean isCurrentUserLoggedIn(){

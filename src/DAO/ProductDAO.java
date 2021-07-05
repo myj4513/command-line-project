@@ -2,6 +2,7 @@ package DAO;
 
 import java.util.*;
 import DTO.Product;
+import Exception.IndexOutOfBoundsException;
 
 public class ProductDAO {
     private List<Product> products = new ArrayList<Product>();

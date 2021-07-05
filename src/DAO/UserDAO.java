@@ -2,7 +2,6 @@ package DAO;
 
 import java.util.*;
 import DTO.User;
-import DTO.Product;
 
 public class UserDAO {
     private Map<String, User> users = new HashMap<String, User>();

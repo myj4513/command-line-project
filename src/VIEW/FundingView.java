@@ -4,11 +4,16 @@ import DTO.*;
 import java.util.*;
 import DAO.FundingDAO;
 import java.time.format.*;
+import Exception.InvalidValueException;
+import Exception.NotEnoughMoneyException;
+import Exception.IndexOutOfBoundsException;
+import SERVICE.*;
 
 public class FundingView {
-    public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm:ss");
+    static Scanner s = new Scanner(System.in);
+    public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm:ss");
 
-    public void showSponsor(FundingDAO fundingDAO, Product product){
+    public static void showSponsor(FundingDAO fundingDAO, Product product){
         List<Funding> list = fundingDAO.getSponsor(product);
         Iterator it = list.iterator();
         while(it.hasNext()){
@@ -18,13 +23,67 @@ public class FundingView {
         }
     }
 
-    public void showFundingList(FundingDAO fundingDAO, User user){
-        List<Funding> list = fundingDAO.getFundingList(user);
+    public static void showFundingProductList(FundingDAO fundingDAO, User user){
+        List<Funding> list = fundingDAO.getFundingProductList(user);
+        if(list.size()==0){
+            System.out.println("펀딩 내역이 존재하지 않습니다.");
+            return;
+        }
         Iterator it = list.iterator();
+        int count = 0;
         while(it.hasNext()){
-            int count = 0;
             Funding funding = (Funding)it.next();
-            System.out.println(++count+"."+funding.getProduct().getName()+"   "+funding.getTime().format(formatter));
+            System.out.println(++count+". 상품명 : "+funding.getProduct().getName()+"   펀딩일시 : "+funding.getTime().format(formatter));
+        }
+    }
+
+    public static void showFunding(UserService userService, ProductService productService, FundingDAO fundingDAO, int index){
+        ShowPage.drawLine();
+        Product product;
+        try{
+            product = productService.productDAO.getProduct(index);
+        } catch(IndexOutOfBoundsException e){
+            System.out.println(e.getMessage());
+            return;
+        }
+        System.out.println("[상품정보]\n");
+        ProductView.showProduct(product);
+        System.out.println();
+        System.out.println("현재 잔액은 "+userService.getCurrentUser().getAccount()+"원입니다.");
+        System.out.print("펀딩 하시겠습니까?[y/n] : ");
+        String tmp = s.nextLine();
+        try{
+            if(tmp.charAt(0)=='y' || tmp.charAt(0)=='Y'){
+                // 펀딩: yes;
+                try{
+                    userService.subtractAccount(product.getFundingPrice());
+                } catch(NotEnoughMoneyException e){
+                    System.out.println(e.getMessage());
+                    return;
+                }
+                Funding funding = new Funding(userService.getCurrentUser(), product);
+                fundingDAO.addFunding(funding);
+                productService.addCurrentAmount(product);
+                System.out.println("펀딩이 완료되었습니다.");
+            }else if(tmp.charAt(0)=='n' || tmp.charAt(0)=='N'){
+                // 펀딩: no
+                return;
+            }else{
+                throw new InvalidValueException();
+            }
+        } catch(InvalidValueException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void showCancelFunding(UserService userService, ProductService productService, FundingService fundingService, FundingDAO fundingDAO, int index){
+        List<Funding> list = fundingDAO.getFundingProductList(userService.getCurrentUser());
+        try{
+            Funding funding = fundingDAO.getFunding(list, index);
+            fundingService.cancelFunding(userService, productService, funding);
+            System.out.println("\"상품명 : "+funding.getProduct().getName()+"   펀딩일시 : "+funding.getTime().format(formatter)+"\" 펀딩이 취소되었습니다.");
+        } catch(IndexOutOfBoundsException e){
+            System.out.println(e.getMessage());
         }
     }
 }

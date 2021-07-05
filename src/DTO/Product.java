@@ -1,13 +1,10 @@
 package DTO;
 
-import java.util.*;
-
 public class Product {
 	private final String name;
 	private final int goalAmount;
 	private int currentAmount=0;
 	private final int fundingPrice;
-	private List<User> sponsor = new ArrayList<User>();
 	
 	public Product(String name, int goalAmount, int fundingPrice){
 		this.name = name;
@@ -30,8 +27,6 @@ public class Product {
 	public int getFundingPrice() {
 		return this.fundingPrice;
 	}
-
-	public List<User> getSponsor(){ return this.sponsor; }
 
 	public void setCurrentAmount(int currentAmount){
 		this.currentAmount = currentAmount;

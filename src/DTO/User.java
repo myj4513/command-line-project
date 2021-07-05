@@ -1,12 +1,9 @@
 package DTO;
 
-import java.util.*;
-
 public class User {
 	private String id;
 	private String password;
 	private int account = 0;
-	private List<Product> fundingHistory = new LinkedList<Product>();
 	
 	public User(String id, String password){
 		this.id = id;
@@ -24,8 +21,6 @@ public class User {
 	public int getAccount(){
 		return account;
 	}
-
-	public List<Product> getFundingHistory(){ return fundingHistory; }
 
 	public void setAccount(int account){
 		this.account = account;

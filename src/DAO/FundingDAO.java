@@ -2,13 +2,10 @@ package DAO;
 
 import java.util.*;
 import DTO.*;
+import Exception.IndexOutOfBoundsException;
 
 public class FundingDAO {
     private List<Funding> fundings = new LinkedList<Funding>();
-
-    public List<Funding> getFundings(){
-        return fundings;
-    }
 
     public void addFunding(Funding funding){
         fundings.add(funding);
@@ -30,7 +27,7 @@ public class FundingDAO {
         return tmp;
     }
 
-    public List<Funding> getFundingList(User user){
+    public List<Funding> getFundingProductList(User user){
         List<Funding> tmp = new ArrayList<Funding>();
         Iterator it = fundings.iterator();
         while(it.hasNext()){
@@ -40,5 +37,11 @@ public class FundingDAO {
             }
         }
         return tmp;
+    }
+
+    public Funding getFunding(List<Funding> list, int index) throws IndexOutOfBoundsException{
+        if(index<1 || index > list.size())
+            throw new IndexOutOfBoundsException();
+        return list.get(index-1);
     }
 }

@@ -1,7 +1,7 @@
 package Exception;
 
 public class InvalidAmountException extends Exception{
-    public InvalidAmountException(String msg){
-        super(msg);
+    public InvalidAmountException(){
+        super("올바르지 않은 금액입니다.");
     }
 }

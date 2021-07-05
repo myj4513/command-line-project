@@ -1,6 +1,5 @@
 package DTO;
 
-import DTO.*;
 import java.time.*;
 
 public class Funding {
@@ -8,7 +7,7 @@ public class Funding {
     private Product product;
     private LocalDateTime time;
 
-    Funding(User user, Product product){
+    public Funding(User user, Product product){
         this.user = user;
         this.product = product;
         this.time = LocalDateTime.now();
