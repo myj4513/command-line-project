@@ -1,3 +1,5 @@
+package UTIL;
+
 import java.util.Scanner;
 import DTO.Product;
 

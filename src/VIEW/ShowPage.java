@@ -1,3 +1,6 @@
+package VIEW;
+
+import SERVICE.UserService;
 
 public class ShowPage {
 	public static void drawLine() {
@@ -59,6 +62,6 @@ public class ShowPage {
 	public static void showDepositPage() {
 		drawLine();
 		System.out.println("[충전하기]\n");
-		System.out.println("계좌 잔액은 "+ SERVICE.UserService.getCurrentUser().getAccount()+"입니다.\n");
+		System.out.println("계좌 잔액은 "+ .getCurrentUser().getAccount()+"입니다.\n");
 	}
 }

@@ -14,7 +14,7 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public void login(String id, String password) throws Exception{
+    public void login(String id, String password) throws WrongPasswordException, NoExistingIdException{
         if(userDAO.getUsers().containsKey(id)){
             if(userDAO.getUsers().get(id).getPassword().equals(password)){
                 //log in 성공
@@ -28,7 +28,7 @@ public class UserService {
         }
     }
 
-    public void deposit(int amount) throws Exception{
+    public void deposit(int amount) throws InvalidAmountException{
         if(amount <= 0){
             throw new InvalidAmountException("올바르지 않은 금액입니다.");
         }else{

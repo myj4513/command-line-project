@@ -24,4 +24,8 @@ public class ProductDAO {
         }
         return products.get(i-1);
     }
+
+    public Iterator getProductsIterator(){
+        return products.iterator();
+    }
 }

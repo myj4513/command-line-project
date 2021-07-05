@@ -12,10 +12,6 @@ public class ProductService {
         this.productDAO = productDAO;
     }
 
-    public Iterator getProductsIterator(){
-        return productDAO.getProducts().iterator();
-    }
-
     public void addCurrentAmount(int index){
         Product product = productDAO.getProduct(index);
         int amount = product.getCurrentAmount();

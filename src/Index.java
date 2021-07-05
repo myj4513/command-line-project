@@ -2,11 +2,15 @@ import DAO.ProductDAO;
 import DAO.UserDAO;
 import DTO.Product;
 import DTO.User;
-import SERVICE.UserService;
+import SERVICE.*;
+import UTIL.UserInput;
+import VIEW.ShowPage;
 
 public class Index {
-	private static ProductDAO productDAO;
-	private static UserDAO userDAO;
+	public static ProductService productService;
+	public static UserService userService;
+	public static ProductDAO productDAO;
+	public static UserDAO userDAO;
 
 
 	public static void main(String[] args) {
@@ -17,6 +21,8 @@ public class Index {
 	public static void init(){
 		productDAO = new ProductDAO();
 		userDAO = new UserDAO();
+		productService = new ProductService(productDAO);
+		userService = new UserService(userDAO);
 	}
 
 	private static void start(){
