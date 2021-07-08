@@ -1,8 +1,8 @@
-package DAO;
+package dao;
 
 import java.util.*;
-import DTO.User;
-import DTO.Product;
+import dto.User;
+import dto.Product;
 
 public class UserDAO {
     private List<User> users = new ArrayList<User>();
@@ -30,7 +30,7 @@ public class UserDAO {
             if(user.getId().equals(id)){
                 if(user.getPassword().equals(password)){
                     //login success
-                    UTIL.UserService.login(user);
+                    util.UserService.login(user);
                     System.out.println("로그인 되었습니다.");
                 }else{
                     //wrong password
@@ -43,14 +43,14 @@ public class UserDAO {
     }
 
     public void deposit(int amount){
-        User user = UTIL.UserService.getCurrentUser();
+        User user = util.UserService.getCurrentUser();
         user.setAccount(amount+user.getAccount());
     }
 
     public void fund(Product product){
-        User tmp = UTIL.UserService.getCurrentUser();
-        UTIL.ProductService.addSponsor(tmp);
-        UTIL.UserService.addFundingHistory(UTIL.ProductService.getCurrentProduct());
+        User tmp = util.UserService.getCurrentUser();
+        util.ProductService.addSponsor(tmp);
+        util.UserService.addFundingHistory(util.ProductService.getCurrentProduct());
         int userAccount = tmp.getAccount();
         tmp.setAccount(userAccount- product.getFundingPrice());
         product.addCurrentAmount();
@@ -58,11 +58,11 @@ public class UserDAO {
     }
 
     public void cancelFunding(Product product){
-        UTIL.UserService.getCurrentUser().getFundingHistory().remove(product);
+        util.UserService.getCurrentUser().getFundingHistory().remove(product);
         //회원 잔액 복구, 상품 현재 펀딩액 복구
         product.subtractCurrentAmount();
-        int currentAccount = UTIL.UserService.getCurrentUser().getAccount();
-        UTIL.UserService.getCurrentUser().setAccount(currentAccount+ product.getFundingPrice());
+        int currentAccount = util.UserService.getCurrentUser().getAccount();
+        util.UserService.getCurrentUser().setAccount(currentAccount+ product.getFundingPrice());
         System.out.println("["+product.getName()+"] 펀딩이 취소되었습니다.");
     }
 }

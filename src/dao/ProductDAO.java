@@ -1,7 +1,7 @@
-package DAO;
+package dao;
 
 import java.util.*;
-import DTO.Product;
+import dto.Product;
 
 public class ProductDAO {
     private List<Product> products = new ArrayList<Product>();
@@ -18,10 +18,7 @@ public class ProductDAO {
         products.remove(product);
     }
 
-    public Product getProduct (int i) throws IndexOutOfBoundsException{
-        if(i<=0 || i>products.size()){
-            throw new IndexOutOfBoundsException();
-        }
+    public Product getProduct (int i){
         return products.get(i-1);
     }
 }

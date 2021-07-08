@@ -1,7 +1,7 @@
-package UTIL;
+package util;
 
-import DTO.User;
-import DTO.Product;
+import dto.User;
+import dto.Product;
 import java.util.*;
 
 public class UserService {

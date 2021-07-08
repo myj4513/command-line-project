@@ -59,6 +59,6 @@ public class ShowPage {
 	public static void showDepositPage() {
 		drawLine();
 		System.out.println("[충전하기]\n");
-		System.out.println("계좌 잔액은 "+UTIL.UserService.getCurrentUser().getAccount()+"입니다.\n");
+		System.out.println("계좌 잔액은 "+ util.UserService.getCurrentUser().getAccount()+"입니다.\n");
 	}
 }
