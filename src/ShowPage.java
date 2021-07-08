@@ -6,67 +6,59 @@ public class ShowPage {
 	
 	public static void showLogInMenuPage() {
 		drawLine();
-		System.out.println("1. È¸¿ø°¡ÀÔ");
-		System.out.println("2. ·Î±×ÀÎ");
+		System.out.println("1. íšŒì›ê°€ì…");
+		System.out.println("2. ë¡œê·¸ì¸");
 	}
 	
 	public static void showSignInPage() {
 		drawLine();
-		System.out.println("[È¸¿ø°¡ÀÔ]\n");
+		System.out.println("[íšŒì›ê°€ì…]\n");
 	}
 	
 	public static void showSuccessSignInPage() {
 		drawLine();
-		System.out.println("È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.\n");
+		System.out.println("íšŒì›ê°€ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.\n");
 	}
 	
 	public static void showLogInPage() {
 		drawLine();
-		System.out.println("[·Î±×ÀÎ]\n");
+		System.out.println("[ë¡œê·¸ì¸]\n");
+	}
+
+	public static void showFundingListPage(){
+		drawLine();
+		System.out.println("[í€ë”©ë‚´ì—­ ì¡°íšŒí•˜ê¸°]\n");
+	}
+	
+	public static void showCancelFundingPage(){
+		drawLine();
+		System.out.println("[í€ë”© ì·¨ì†Œí•˜ê¸°]\n");
 	}
 	
 	public static void showMainMenuPage() {
 		drawLine();
-		System.out.println("1.»óÇ° ¸ñ·Ï º¸±â");
-		System.out.println("2.»óÇ° µî·ÏÇÏ±â");
-		System.out.println("3.ÆİµùÇÏ±â");
-		System.out.println("4.Æİµù Ãë¼ÒÇÏ±â");
-		System.out.println("5.Á¶È¸ÇÏ±â");
-		System.out.println("6.ÃæÀüÇÏ±â");
+		System.out.println("1.ìƒí’ˆ ë“±ë¡í•˜ê¸°");
+		System.out.println("2.í€ë”©í•˜ê¸°");
+		System.out.println("3.í€ë”© ì·¨ì†Œí•˜ê¸°");
+		System.out.println("4.í€ë”©ë‚´ì—­ ì¡°íšŒí•˜ê¸°");
+		System.out.println("5.ì¶©ì „í•˜ê¸°");
 	}
 	
 	public static void showProductListPage() {
 		drawLine();
-		System.out.println("[»óÇ° ¸ñ·Ï º¸±â]\n");
+		System.out.println("[ìƒí’ˆ ëª©ë¡ ë³´ê¸°]\n");
 	}
 	
 	public static void showRegisterProductPage() {
 		drawLine();
-		System.out.println("[»óÇ° µî·ÏÇÏ±â]\n");
+		System.out.println("[ìƒí’ˆ ë“±ë¡í•˜ê¸°]\n");
 	}
-	
-	public static void showProductList() {
-		for(int i=0;i<Index.productNum;i++) {
-			System.out.println(i+1+". "+Index.productArr[i].getName());
-		}
-	}
+
+
 	
 	public static void showDepositPage() {
 		drawLine();
-		System.out.println("[ÃæÀüÇÏ±â]\n");
-		System.out.println("ÇöÀçÀÜ¾×Àº "+Index.userArr[Index.curUser].getAccount()+"¿ø ÀÔ´Ï´Ù.\n");
-	}
-	
-	public static void showProductPage(int productNum) {
-		int i = productNum-1;
-		drawLine();
-		System.out.println("[»óÇ° Á¤º¸]\n");
-		System.out.println("»óÇ°¸í:"+Index.productArr[i].getName()+"¿ø");
-		System.out.println("¸ñÇ¥ ¾×¼ö:"+Index.productArr[i].getGoalAmount()+"¿ø");
-		System.out.println("ÇöÀç Æİµù ¾×¼ö:"+Index.productArr[i].getCurrentAmount()+"¿ø");
-		System.out.println("´Ş¼º·ü:"+(Index.productArr[i].getCurrentAmount()/Index.productArr[i].getGoalAmount())*100+"%");
-		System.out.println("Æİµù ±İ¾×:"+Index.productArr[i].getFundingPrice());
-		System.out.println();
-		System.out.println("°èÁÂ ÀÜ¾×Àº "+Index.userArr[Index.curUser].getAccount()+"¿øÀÔ´Ï´Ù.");
+		System.out.println("[ì¶©ì „í•˜ê¸°]\n");
+		System.out.println("ê³„ì¢Œ ì”ì•¡ì€ "+UTIL.UserService.getCurrentUser().getAccount()+"ì…ë‹ˆë‹¤.\n");
 	}
 }

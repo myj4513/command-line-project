@@ -1,76 +1,92 @@
+import DAO.ProductDAO;
+import DAO.UserDAO;
+import DTO.Product;
+import DTO.User;
+import UTIL.UserService;
+import java.util.*;
 
 public class Index {
-	static boolean isLoggedIn = false;
-	static User[] userArr = new User[10];
-	static int curUser;
-	static Product[] productArr = new Product[10];
-	static int userNum = 0;
-	static int productNum = 0;
+	private static ProductDAO productDAO;
+	private static UserDAO userDAO;
+
+
 	public static void main(String[] args) {
+		init();
+		start();
+	}
+
+	public static void init(){
+		productDAO = new ProductDAO();
+		userDAO = new UserDAO();
+	}
+
+	private static void start(){
 		while(true) {
-			if(isLoggedIn) {//·Î±×ÀÎ ¼º°ø
+			if(UserService.isCurrentUserLoggedIn()) { //if logged in.
 				ShowPage.showMainMenuPage();
-				int input = UserInput.mainMenuInput();
+				int input = UserInput.menuInput();
 				switch(input) {
-				case 1:
-					ShowPage.showProductListPage();
-					ShowPage.showProductList();
-					int productListInput = UserInput.productListInput();
-					ShowPage.showProductPage(productListInput);
-					boolean isFunding = UserInput.isFundingInput();
-					break;
-				case 2:
-					ShowPage.showRegisterProductPage();
-					String registerProductInput = UserInput.registerProductInput();
-					productArr[productNum++] = new Product(registerProductInput);
-					System.out.println("\n»óÇ°ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
-					break;
-				case 6:
-					ShowPage.showDepositPage();
-					int depositAmount = UserInput.depositAmountInput();
-					userArr[curUser].deposit(depositAmount);
-					break;
+					case 1:
+						ShowPage.showRegisterProductPage();
+						String registerProductInput = UserInput.registerProductInput();
+						productDAO.addProduct(new Product(registerProductInput));
+						break;
+					case 2:
+						ShowPage.showProductListPage();
+						if(productDAO.getProducts().isEmpty()){
+							System.out.println("ì£„ì†¡í•©ë‹ˆë‹¤. ìƒí’ˆì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+							break;
+						}
+						productDAO.getProductList();
+						Product product = productDAO.getProduct(UserInput.menuInput());
+						if(UserInput.isFunding(product)){ // funding yes!
+							userDAO.fund(product);
+						}//else ì¼ë•Œ ë­˜í•´ì•¼í• ê¹Œ
+						break;
+					case 3:
+						ShowPage.showCancelFundingPage();
+						System.out.println("size:"+productDAO.getProducts().size());
+						if(productDAO.getProducts().isEmpty()){
+							System.out.println("ì£„ì†¡í•©ë‹ˆë‹¤. í€ë”© ë‚´ì—­ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+							break;
+						}
+						UTIL.UserService.showFundingHistory();
+						Product cancelProduct =  UTIL.UserService.getCurrentUser().getFundingHistory().get(UserInput.menuInput()-1);
+						userDAO.cancelFunding(cancelProduct);
+						break;
+					case 4:
+						ShowPage.showFundingListPage();
+						if(productDAO.getProducts().isEmpty()){
+							System.out.println("ì£„ì†¡í•©ë‹ˆë‹¤. í€ë”© ë‚´ì—­ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+							break;
+						}
+						UTIL.UserService.showFundingHistory();
+						break;
+					case 5:
+						ShowPage.showDepositPage();
+						userDAO.deposit(UserInput.depositInput());
+						break;
 				}
-				
-			}else {//·Î±×ÀÎ ½ÇÆĞ
-				while(true) {
-					ShowPage.showLogInMenuPage();
-					int input = UserInput.logInPageInput();
-					
-					switch(input) {
+
+
+			}else {//login failed
+				ShowPage.showLogInMenuPage();
+				int input = UserInput.menuInput();
+
+				switch(input) {
 					case 1:
 						ShowPage.showSignInPage();
 						String signInInput = UserInput.signInUserInput();
-						userArr[userNum++] = new User(signInInput);
+						userDAO.addUser(new User(signInInput));
 						ShowPage.showSuccessSignInPage();
 						break;
 					case 2:
 						ShowPage.showLogInPage();
 						String logInInput = UserInput.signInUserInput();
-						logIn(logInInput);
+						userDAO.logIn(logInInput);
 						break;
-					}	
-					if(isLoggedIn) break;
-				}		
-			}
-		}		
-	}
-	
-	public static void logIn(String logInInput) {
-		String[] arr = logInInput.split("/");
-		String id = arr[0].trim();
-		String password = arr[1].trim();
-		
-		for(int i=0;i<userArr.length;i++) {
-			if(userArr[i]!=null) {
-				if(id.equals(userArr[i].getId())&&password.equals(userArr[i].getPassword())) {
-					System.out.println("\n·Î±×ÀÎ ¼º°ø!!");
-					isLoggedIn = true;
-					curUser = i;
-					return;
 				}
 			}
 		}
-		System.out.println("ÀÏÄ¡ÇÏ´Â ¾ÆÀÌµğ³ª ºñ¹Ğ¹øÈ£°¡ ¾ø½À´Ï´Ù.");
 	}
 }

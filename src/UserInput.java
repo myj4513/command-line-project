@@ -1,59 +1,77 @@
 import java.util.Scanner;
+import DTO.Product;
 
 public class UserInput {
 	static Scanner scanner = new Scanner(System.in);
 	
-	public static int logInPageInput() {
-		System.out.print("\nÀÔ·Â:");
+	public static int menuInput() {
+		System.out.print("\nì…ë ¥:");
 		return scanner.nextInt();
 	}
 	
 	public static String signInUserInput() {
-		System.out.print("¾ÆÀÌµğ:");
-		String id = scanner.next();  //¿Ö nextLine()À» ÇÏ¸é ¾ÈµÉ±î..
-		System.out.print("ºñ¹Ğ¹øÈ£:");
+		System.out.print("ì•„ì´ë””:");
+		String id = scanner.next();
+		System.out.print("ë¹„ë°€ë²ˆí˜¸:");
 		String password = scanner.next();
 		
 		return id+"/"+password;
 	}
 	
-	public static int mainMenuInput() {   //logInPageInput°ú ÅëÇÕ °í·ÁÇØº¸ÀÚ
-		System.out.print("\nÀÔ·Â:");
-		return scanner.nextInt();
-	}
-	
 	public static String registerProductInput() {
-		System.out.print("»óÇ° ÀÌ¸§:");
-		String name = scanner.next();
-		System.out.print("¸ñÇ¥ ±İ¾×:");
+		scanner.nextLine();
+		System.out.print("ìƒí’ˆëª…:");
+		String name = scanner.nextLine();
+		System.out.print("ëª©í‘œì•¡:");
 		int goalAmount = scanner.nextInt();
-		System.out.print("Æİµù ±İ¾×:");
+		System.out.print("ê¸ˆì•¡:");
 		int fundingPrice = scanner.nextInt();
 		return name+"/"+goalAmount+"/"+fundingPrice;
 	}
-	
-	public static int productListInput() {
-		System.out.print("\nÀÔ·Â:");
-		return scanner.nextInt();
+
+	public static int depositInput() {
+		int amount;
+		while(true){
+			try{
+				System.out.print("ì¶©ì „ê¸ˆì•¡:");
+				amount = scanner.nextInt();
+				if(amount<=0){
+					throw new Exception("ì˜¬ë°”ë¥´ì§€ ì•Šì€ ê¸ˆì•¡ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
+				}
+				return amount;
+			}catch(Exception e){
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 	
-	public static int depositAmountInput() {
-		System.out.print("ÃæÀü ¾×¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä:");
-		return scanner.nextInt();
-	}
-	
-	public static boolean isFundingInput() {
-		System.out.print("ÃæÀüÇÏ½Ã°Ú½À´Ï±î?(y/n)");
+	public static boolean isFunding(Product product) {
+		System.out.println("=================================\n");
+		System.out.println(product);
+		System.out.println("\nê³„ì¢Œ ì”ì•¡ì€ "+UTIL.UserService.getCurrentUser().getAccount()+"ì…ë‹ˆë‹¤.\n");
 		while(scanner.hasNextLine()) {
+			scanner.nextLine();
+			System.out.print("í€ë”© í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(y/n):");
 			try {
-				if(scanner.nextLine().charAt(0)=='y')
-					return true;
-				else if(scanner.nextLine().charAt(0)=='n')
+				if(scanner.nextLine().charAt(0)=='y') {
+					try{
+						if(UTIL.UserService.getCurrentUser().getAccount()>=product.getFundingPrice()){
+							return true;
+						}else{
+							throw new Exception("ì”ì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
+						}
+					}catch(Exception e){
+						System.out.println(e.getMessage());
+						return false;
+					}
+				}
+				else if(scanner.nextLine().charAt(0)=='n') {
 					return false;
+				}
 				else
-					throw new Exception();
+					throw new Exception("ì˜¬ë°”ë¥´ì§€ ì•Šì€ ì…ë ¥ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”.");
 			} catch(Exception e) {
-				System.out.print("ÃæÀüÇÏ½Ã°Ú½À´Ï±î?(y/n)");
+				System.out.println(e.getMessage());
 			}
 		}
 		return false;
