@@ -9,11 +9,10 @@ public class Product {
 	private final int fundingPrice;
 	private List<User> sponsor = new ArrayList<User>();
 	
-	public Product(String str){
-		String[] arr = str.split("/");
-		this.name = arr[0].trim();
-		this.goalAmount = Integer.parseInt(arr[1].trim());
-		this.fundingPrice = Integer.parseInt(arr[2].trim());
+	public Product(String name, int goalAmount, int fundingPrice){
+		this.name = name;
+		this.goalAmount = goalAmount;
+		this.fundingPrice = fundingPrice;
 	}
 	
 	public String getName() {
@@ -34,11 +33,8 @@ public class Product {
 
 	public List<User> getSponsor(){ return this.sponsor; }
 
-
-	public void addCurrentAmount(){ this.currentAmount += this.fundingPrice; }
-
-	public void subtractCurrentAmount(){
-		this.currentAmount -= this.fundingPrice;
+	public void setCurrentAmount(int currentAmount){
+		this.currentAmount = currentAmount;
 	}
 
 	public String toString(){
