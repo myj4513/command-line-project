@@ -1,10 +1,12 @@
 package view;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import service.UserService;
 import dao.UserDAO;
 import dto.User;
 import exceptions.*;
+import util.SHA256;
 
 public class UserView {
     static Scanner s = new Scanner(System.in);
@@ -18,13 +20,16 @@ public class UserView {
         System.out.println();
 
         try{
-            userService.login(id, password);
+            String encryptedPassword = SHA256.encrypt(password);
+            userService.login(id, encryptedPassword);
             System.out.println("로그인 되었습니다.");
             System.out.println("환영합니다! \""+id+"\"님.");
         } catch(WrongPasswordException e){
             System.out.println(e.getMessage());
         } catch(NoExistingIdException e){
             System.out.println(e.getMessage());
+        } catch(NoSuchAlgorithmException e){
+            e.printStackTrace();
         }
     }
 
@@ -61,9 +66,12 @@ public class UserView {
         String password = s.nextLine();
 
         try {
-            userDAO.addUser(new User(id, password));
+            String encryptedPassword = SHA256.encrypt(password);
+            userDAO.addUser(new User(id, encryptedPassword));
         } catch (IdAlreadyExistsException e) {
             System.out.println(e.getMessage());
+        } catch (NoSuchAlgorithmException e){
+            e.printStackTrace();
         }
     }
 }

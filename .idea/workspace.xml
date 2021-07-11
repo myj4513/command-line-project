@@ -2,39 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5975530f-0b55-4302-b63a-649a59f45a1f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/bin/DAO/FundingDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/DAO/FundingDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/DAO/ProductDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/DAO/ProductDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/DAO/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/DAO/UserDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/DTO/Funding.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/DTO/Funding.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/DTO/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/DTO/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/DTO/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/DTO/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Exception/IndexOutOfBoundsException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Exception/InvalidAmountException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Exception/InvalidValueException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Exception/NoExistingIdException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Exception/NotEnoughMoneyException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Exception/WrongPasswordException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Index.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Index.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/SERVICE/FundingService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SERVICE/FundingService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/SERVICE/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SERVICE/ProductService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/SERVICE/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SERVICE/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/UTIL/UserInput.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/UTIL/UserInput.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/VIEW/FundingView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/VIEW/FundingView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/VIEW/ProductView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/VIEW/ProductView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/VIEW/ShowPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/VIEW/ShowPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/VIEW/UserView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/VIEW/UserView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Index.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/FundingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/FundingDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/IdAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/IdAlreadyExistsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/IndexOutOfBoundsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/IndexOutOfBoundsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/InvalidAmountException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/InvalidAmountException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/InvalidValueException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/InvalidValueException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/NoExistingIdException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/NoExistingIdException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/NotEnoughMoneyException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/NotEnoughMoneyException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/exceptions/WrongPasswordException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/exceptions/WrongPasswordException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ProductView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/SHA256.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/UserView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,9 +54,24 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Index">
-    <configuration name="Index" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Index" type="Application" factoryName="Application" temporary="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Index" />
       <module name="CommandLineProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SHA256" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="util.SHA256" />
+      <module name="CommandLineProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -102,6 +86,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Index" />
+        <item itemvalue="Application.SHA256" />
         <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
@@ -122,7 +107,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/Encrytion" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
