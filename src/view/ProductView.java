@@ -27,10 +27,24 @@ public class ProductView {
         System.out.println("[상품 등록하기]\n");
         System.out.print("상품명 : ");
         String name = s.nextLine();
-        System.out.print("목표액 : ");
-        int goalAmount = Integer.parseInt(s.nextLine());
-        System.out.print("금액 : ");
-        int fundingPrice = Integer.parseInt(s.nextLine());
+        int goalAmount = 0;
+        int fundingPrice = 0;
+        while(goalAmount == 0){
+            try{
+                System.out.print("목표액 : ");
+                goalAmount = Integer.parseInt(s.nextLine());
+            } catch(NumberFormatException e){
+                System.out.println("올바르지 않은 입력입니다.");
+            }
+        }
+        while(fundingPrice == 0){
+            System.out.print("금액 : ");
+            try{
+                fundingPrice = Integer.parseInt(s.nextLine());
+            } catch (NumberFormatException e){
+                System.out.println("올바르지 않은 입력입니다.");
+            }
+        }
         Product product = new Product(name, goalAmount, fundingPrice);
         productDAO.addProduct(product);
         System.out.println();

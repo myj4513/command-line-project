@@ -31,12 +31,15 @@ public class Index {
 		while(true) {
 			if(userService.isCurrentUserLoggedIn()) { //logged in
 				ShowPage.showMainMenuPage();
-				int input = UserInput.menuInput();
+				int input = 0;
 				try{
+					input = UserInput.menuInput();
 					if(input<1 || input>5)
 						throw new IndexOutOfBoundsException();
 				} catch (IndexOutOfBoundsException e){
 					System.out.println(e.getMessage());
+				} catch (NumberFormatException e){
+					System.out.println("올바르지 않은 입력입니다.");
 				}
 				switch(input) {
 					case 1: //1.상품 등록하기
@@ -65,12 +68,15 @@ public class Index {
 				}
 			}else {//login failed
 				ShowPage.showLogInMenuPage();
-				int input = UserInput.menuInput();
+				int input = 0;
 				try{
+					input = UserInput.menuInput();
 					if(input<1 || input>2)
 						throw new IndexOutOfBoundsException();
 				} catch (IndexOutOfBoundsException e){
 					System.out.println(e.getMessage());
+				} catch (NumberFormatException e){
+					System.out.println("올바르지 않은 입력입니다.");
 				}
 
 				switch(input) {

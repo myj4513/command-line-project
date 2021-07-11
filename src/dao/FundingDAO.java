@@ -39,7 +39,7 @@ public class FundingDAO {
         return tmp;
     }
 
-    public Funding getFunding(List<Funding> list, int index) throws IndexOutOfBoundsException{
+    public Funding getFunding(List<Funding> list, int index) {
         if(index<1 || index > list.size())
             throw new IndexOutOfBoundsException();
         return list.get(index-1);

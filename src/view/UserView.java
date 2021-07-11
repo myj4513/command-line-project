@@ -33,10 +33,16 @@ public class UserView {
         System.out.println("[충전하기]\n");
         System.out.println("현재 잔액은 "+userService.getCurrentUser().getAccount()+"원입니다.");
         System.out.println();
-        System.out.print("충전금액 : ");
-        int amount = Integer.parseInt(s.nextLine());
+        int amount = 0;
+        while(amount==0){
+            try{
+                System.out.print("충전금액 : ");
+                amount = Integer.parseInt(s.nextLine());
+            } catch (NumberFormatException e){
+                System.out.println("올바르지 않은 입력입니다.");
+            }
+        }
         System.out.println();
-
         try{
             userService.deposit(amount);
             System.out.println("충전이 완료되었습니다.");
@@ -56,9 +62,8 @@ public class UserView {
 
         try {
             userDAO.addUser(new User(id, password));
-        } catch (Exception e) {
-            // do something
-            // FIXME
+        } catch (IdAlreadyExistsException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

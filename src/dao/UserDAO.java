@@ -13,7 +13,7 @@ public class UserDAO {
         return users;
     }
 
-    public void addUser(User user) throws IdAlreadyExistsException{
+    public void addUser(User user) {
         if(users.containsKey(user.getId())){
             throw new IdAlreadyExistsException();
         }
