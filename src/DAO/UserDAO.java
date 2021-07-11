@@ -2,6 +2,8 @@ package DAO;
 
 import java.util.*;
 import DTO.User;
+import DTO.Product;
+import exception.IdAlreadyExistsException;
 
 public class UserDAO {
     private Map<String, User> users = new HashMap<String, User>();
@@ -10,7 +12,10 @@ public class UserDAO {
         return users;
     }
 
-    public void addUser(User user){
+    public void addUser(User user) throws IdAlreadyExistsException{
+        if(users.containsKey(user.getId())){
+            throw new IdAlreadyExistsException();
+        }
         users.put(user.getId(), user);
     }
 
