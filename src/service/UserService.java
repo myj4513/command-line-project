@@ -1,8 +1,8 @@
-package SERVICE;
+package service;
 
-import DAO.UserDAO;
-import DTO.User;
-import Exception.*;
+import dao.UserDAO;
+import dto.User;
+import exceptions.*;
 
 public class UserService {
     private User currentUser = null;

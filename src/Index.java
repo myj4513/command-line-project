@@ -1,8 +1,8 @@
-import DAO.*;
-import SERVICE.*;
-import UTIL.UserInput;
-import VIEW.*;
-import Exception.IndexOutOfBoundsException;
+import dao.*;
+import service.*;
+import util.UserInput;
+import view.*;
+import exceptions.IndexOutOfBoundsException;
 
 public class Index {
 	public static ProductService productService;

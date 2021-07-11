@@ -1,8 +1,8 @@
-package VIEW;
+package view;
 
-import DAO.*;
+import dao.*;
 import java.util.*;
-import DTO.Product;
+import dto.Product;
 
 public class ProductView {
     static Scanner s = new Scanner(System.in);

@@ -1,8 +1,8 @@
-package DAO;
+package dao;
 
 import java.util.*;
-import DTO.*;
-import Exception.IndexOutOfBoundsException;
+import dto.*;
+import exceptions.IndexOutOfBoundsException;
 
 public class FundingDAO {
     private List<Funding> fundings = new LinkedList<Funding>();

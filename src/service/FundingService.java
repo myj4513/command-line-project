@@ -1,7 +1,7 @@
-package SERVICE;
+package service;
 
-import DAO.FundingDAO;
-import DTO.*;
+import dao.FundingDAO;
+import dto.*;
 
 public class FundingService {
     public FundingDAO fundingDAO;

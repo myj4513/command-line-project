@@ -1,4 +1,4 @@
-package Exception;
+package exceptions;
 
 public class NoExistingIdException extends Exception{
     public NoExistingIdException(){

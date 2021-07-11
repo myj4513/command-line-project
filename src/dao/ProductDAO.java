@@ -1,8 +1,8 @@
-package DAO;
+package dao;
 
 import java.util.*;
-import DTO.Product;
-import Exception.IndexOutOfBoundsException;
+import dto.Product;
+import exceptions.IndexOutOfBoundsException;
 
 public class ProductDAO {
     private List<Product> products = new ArrayList<Product>();

@@ -1,4 +1,4 @@
-package Exception;
+package exceptions;
 
 public class InvalidValueException extends Exception{
     public InvalidValueException(){

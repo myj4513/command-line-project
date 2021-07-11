@@ -1,7 +1,7 @@
-package DAO;
+package dao;
 
-import DTO.User;
-import Exception.IdAlreadyExistsException;
+import dto.User;
+import exceptions.IdAlreadyExistsException;
 
 import java.util.HashMap;
 import java.util.Map;

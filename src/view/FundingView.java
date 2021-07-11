@@ -1,13 +1,13 @@
-package VIEW;
+package view;
 
-import DTO.*;
+import dto.*;
 import java.util.*;
-import DAO.FundingDAO;
+import dao.FundingDAO;
 import java.time.format.*;
-import Exception.InvalidValueException;
-import Exception.NotEnoughMoneyException;
-import Exception.IndexOutOfBoundsException;
-import SERVICE.*;
+import exceptions.InvalidValueException;
+import exceptions.NotEnoughMoneyException;
+import exceptions.IndexOutOfBoundsException;
+import service.*;
 
 public class FundingView {
     static Scanner s = new Scanner(System.in);

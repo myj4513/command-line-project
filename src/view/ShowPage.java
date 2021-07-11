@@ -1,4 +1,4 @@
-package VIEW;
+package view;
 
 public class ShowPage {
 	public static void drawLine() {

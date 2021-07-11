@@ -1,10 +1,10 @@
-package VIEW;
+package view;
 
 import java.util.*;
-import SERVICE.UserService;
-import DAO.UserDAO;
-import DTO.User;
-import Exception.*;
+import service.UserService;
+import dao.UserDAO;
+import dto.User;
+import exceptions.*;
 
 public class UserView {
     static Scanner s = new Scanner(System.in);
