@@ -12,7 +12,7 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public void login(String id, String password) throws WrongPasswordException, NoExistingIdException{
+    public void login(String id, String password) {
         if(userDAO.getUsers().containsKey(id)){
             if(userDAO.getUsers().get(id).getPassword().equals(password)){
                 //log in 성공
@@ -26,7 +26,7 @@ public class UserService {
         }
     }
 
-    public void deposit(int amount) throws InvalidAmountException{
+    public void deposit(int amount) {
         if(amount <= 0){
             throw new InvalidAmountException();
         }else{
@@ -40,7 +40,7 @@ public class UserService {
         currentUser.setAccount(curAmount+amount);
     }
 
-    public void subtractAccount(int amount)throws NotEnoughMoneyException{
+    public void subtractAccount(int amount){
         int curAmount = currentUser.getAccount();
         if(curAmount<amount)
             throw new NotEnoughMoneyException();
