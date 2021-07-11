@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5975530f-0b55-4302-b63a-649a59f45a1f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/util/SHA256.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/DTO/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/DTO/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/SERVICE/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SERVICE/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/FundingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/FundingDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/Funding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/Funding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +57,7 @@
       <recent name="C:\Users\문예준\eclipse-workspace\CommandLineProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Index">
+  <component name="RunManager" selected="Application.User">
     <configuration name="Index" type="Application" factoryName="Application" temporary="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -76,6 +80,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="User" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dto.User" />
+      <module name="CommandLineProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dto.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="test" />
       <module name="CommandLineProject" />
@@ -85,6 +102,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.User" />
         <item itemvalue="Application.Index" />
         <item itemvalue="Application.SHA256" />
         <item itemvalue="Application.test" />
@@ -113,7 +131,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/Encrytion" />
+                        <option value="feature/Encryption" />
                       </list>
                     </value>
                   </entry>
