@@ -46,7 +46,7 @@ public class UserView {
         }
     }
 
-    public static void showSignIn(UserDAO userDAO){
+    public static void showSignIn(UserDAO userDAO) {
         ShowPage.drawLine();
         System.out.println("[회원가입]\n");
         System.out.print("아이디 : ");
@@ -54,6 +54,11 @@ public class UserView {
         System.out.print("비밀번호 : ");
         String password = s.nextLine();
 
-        userDAO.addUser(new User(id, password));
+        try {
+            userDAO.addUser(new User(id, password));
+        } catch (Exception e) {
+            // do something
+            // FIXME
+        }
     }
 }

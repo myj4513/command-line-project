@@ -1,12 +1,13 @@
 package DAO;
 
-import java.util.*;
 import DTO.User;
-import DTO.Product;
-import exception.IdAlreadyExistsException;
+import Exception.IdAlreadyExistsException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserDAO {
-    private Map<String, User> users = new HashMap<String, User>();
+    private Map<String, User> users = new HashMap<>();
 
     public Map<String, User> getUsers(){
         return users;

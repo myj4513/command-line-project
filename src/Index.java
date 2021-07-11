@@ -27,7 +27,7 @@ public class Index {
 		fundingService = new FundingService(fundingDAO);
 	}
 
-	private static void start(){
+	private static void start() {
 		while(true) {
 			if(userService.isCurrentUserLoggedIn()) { //logged in
 				ShowPage.showMainMenuPage();
