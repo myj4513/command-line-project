@@ -1,76 +1,93 @@
+import dao.*;
+import service.*;
+import util.UserInput;
+import view.*;
+import exceptions.IndexOutOfBoundsException;
 
 public class Index {
-	static boolean isLoggedIn = false;
-	static User[] userArr = new User[10];
-	static int curUser;
-	static Product[] productArr = new Product[10];
-	static int userNum = 0;
-	static int productNum = 0;
+	public static ProductService productService;
+	public static UserService userService;
+	public static FundingService fundingService;
+	public static ProductDAO productDAO;
+	public static UserDAO userDAO;
+	public static FundingDAO fundingDAO;
+
+
 	public static void main(String[] args) {
-		while(true) {
-			if(isLoggedIn) {//·Î±×ÀÎ ¼º°ø
-				ShowPage.showMainMenuPage();
-				int input = UserInput.mainMenuInput();
-				switch(input) {
-				case 1:
-					ShowPage.showProductListPage();
-					ShowPage.showProductList();
-					int productListInput = UserInput.productListInput();
-					ShowPage.showProductPage(productListInput);
-					boolean isFunding = UserInput.isFundingInput();
-					break;
-				case 2:
-					ShowPage.showRegisterProductPage();
-					String registerProductInput = UserInput.registerProductInput();
-					productArr[productNum++] = new Product(registerProductInput);
-					System.out.println("\n»óÇ°ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
-					break;
-				case 6:
-					ShowPage.showDepositPage();
-					int depositAmount = UserInput.depositAmountInput();
-					userArr[curUser].deposit(depositAmount);
-					break;
-				}
-				
-			}else {//·Î±×ÀÎ ½ÇÆĞ
-				while(true) {
-					ShowPage.showLogInMenuPage();
-					int input = UserInput.logInPageInput();
-					
-					switch(input) {
-					case 1:
-						ShowPage.showSignInPage();
-						String signInInput = UserInput.signInUserInput();
-						userArr[userNum++] = new User(signInInput);
-						ShowPage.showSuccessSignInPage();
-						break;
-					case 2:
-						ShowPage.showLogInPage();
-						String logInInput = UserInput.signInUserInput();
-						logIn(logInInput);
-						break;
-					}	
-					if(isLoggedIn) break;
-				}		
-			}
-		}		
+		init();
+		start();
 	}
-	
-	public static void logIn(String logInInput) {
-		String[] arr = logInInput.split("/");
-		String id = arr[0].trim();
-		String password = arr[1].trim();
-		
-		for(int i=0;i<userArr.length;i++) {
-			if(userArr[i]!=null) {
-				if(id.equals(userArr[i].getId())&&password.equals(userArr[i].getPassword())) {
-					System.out.println("\n·Î±×ÀÎ ¼º°ø!!");
-					isLoggedIn = true;
-					curUser = i;
-					return;
+
+	public static void init(){
+		productDAO = new ProductDAO();
+		userDAO = new UserDAO();
+		fundingDAO = new FundingDAO();
+		productService = new ProductService(productDAO);
+		userService = new UserService(userDAO);
+		fundingService = new FundingService(fundingDAO);
+	}
+
+	private static void start() {
+		while(true) {
+			if(userService.isCurrentUserLoggedIn()) { //logged in
+				ShowPage.showMainMenuPage();
+				int input = 0;
+				try{
+					input = UserInput.menuInput();
+					if(input<1 || input>5)
+						throw new IndexOutOfBoundsException();
+				} catch (IndexOutOfBoundsException e){
+					System.out.println(e.getMessage());
+				} catch (NumberFormatException e){
+					System.out.println("ì˜¬ë°”ë¥´ì§€ ì•Šì€ ì…ë ¥ì…ë‹ˆë‹¤.");
+				}
+				switch(input) {
+					case 1: //1.ìƒí’ˆ ë“±ë¡í•˜ê¸°
+						ProductView.showRegisterProduct(productDAO);
+						break;
+					case 2: //2.í€ë”©í•˜ê¸°
+						ProductView.showProductsList(productDAO);
+						if(productDAO.getProducts().isEmpty()) break; //ìƒí’ˆì´ í•˜ë‚˜ë„ ì—†ìœ¼ë©´
+						int productIndex = UserInput.menuInput();
+						FundingView.showFunding(userService, productService, fundingDAO, productIndex);
+						break;
+					case 3: //3.í€ë”© ì·¨ì†Œí•˜ê¸°
+						ShowPage.showCancelFundingPage();
+						FundingView.showFundingProductList(fundingDAO, userService.getCurrentUser());
+						if(fundingDAO.getFundingProductList(userService.getCurrentUser()).isEmpty()) break; //í€ë”©ë‚´ì—­ì´ ì—†ìœ¼ë©´..
+						int fundingIndex = UserInput.menuInput();
+						FundingView.showCancelFunding(userService, productService, fundingService, fundingDAO, fundingIndex);
+						break;
+					case 4: //4.í€ë”©ë‚´ì—­ ì¡°íšŒí•˜ê¸°
+						ShowPage.showFundingListPage();
+						FundingView.showFundingProductList(fundingDAO, userService.getCurrentUser());
+						break;
+					case 5: //5.ì¶©ì „í•˜ê¸°
+						UserView.showDeposit(userService);
+						break;
+				}
+			}else {//login failed
+				ShowPage.showLogInMenuPage();
+				int input = 0;
+				try{
+					input = UserInput.menuInput();
+					if(input<1 || input>2)
+						throw new IndexOutOfBoundsException();
+				} catch (IndexOutOfBoundsException e){
+					System.out.println(e.getMessage());
+				} catch (NumberFormatException e){
+					System.out.println("ì˜¬ë°”ë¥´ì§€ ì•Šì€ ì…ë ¥ì…ë‹ˆë‹¤.");
+				}
+
+				switch(input) {
+					case 1: //íšŒì›ê°€ì…
+						UserView.showSignIn(userDAO);
+						break;
+					case 2: //ë¡œê·¸ì¸
+						UserView.showLogin(userService);
+						break;
 				}
 			}
 		}
-		System.out.println("ÀÏÄ¡ÇÏ´Â ¾ÆÀÌµğ³ª ºñ¹Ğ¹øÈ£°¡ ¾ø½À´Ï´Ù.");
 	}
 }
