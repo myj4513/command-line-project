@@ -11,6 +11,11 @@ public class Product {
 		this.goalAmount = goalAmount;
 		this.fundingPrice = fundingPrice;
 	}
+
+	public boolean equals(Product product){
+		if(this == product) return true;
+		return name.equals(product.name) && (goalAmount == product.goalAmount) && (currentAmount == product.currentAmount) && (fundingPrice == product.fundingPrice);
+	}
 	
 	public String getName() {
 		return this.name;

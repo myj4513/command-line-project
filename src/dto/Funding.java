@@ -13,6 +13,11 @@ public class Funding {
         this.time = LocalDateTime.now();
     }
 
+    public boolean equals(Funding funding){
+        if(this == funding) return true;
+        return user.equals(funding.user) && product.equals(funding.product) && time.isEqual(funding.time);
+    }
+
     public User getUser(){
         return user;
     }

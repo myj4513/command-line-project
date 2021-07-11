@@ -20,7 +20,7 @@ public class FundingDAO {
         Iterator it = fundings.iterator();
         while(it.hasNext()){
             Funding funding = (Funding)it.next();
-            if(funding.getProduct() == product){
+            if(funding.getProduct().equals(product)){
                 tmp.add(funding);
             }
         }
@@ -32,7 +32,7 @@ public class FundingDAO {
         Iterator it = fundings.iterator();
         while(it.hasNext()){
             Funding funding = (Funding)it.next();
-            if(funding.getUser()==user){
+            if(funding.getUser().equals(user)){
                 tmp.add(funding);
             }
         }
