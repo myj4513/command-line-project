@@ -1,13 +1,16 @@
-import DAO.ProductDAO;
-import DAO.UserDAO;
-import DTO.Product;
-import DTO.User;
-import UTIL.UserService;
-import java.util.*;
+import dao.*;
+import service.*;
+import util.UserInput;
+import view.*;
+import exceptions.IndexOutOfBoundsException;
 
 public class Index {
-	private static ProductDAO productDAO;
-	private static UserDAO userDAO;
+	public static ProductService productService;
+	public static UserService userService;
+	public static FundingService fundingService;
+	public static ProductDAO productDAO;
+	public static UserDAO userDAO;
+	public static FundingDAO fundingDAO;
 
 
 	public static void main(String[] args) {
@@ -18,72 +21,64 @@ public class Index {
 	public static void init(){
 		productDAO = new ProductDAO();
 		userDAO = new UserDAO();
+		fundingDAO = new FundingDAO();
+		productService = new ProductService(productDAO);
+		userService = new UserService(userDAO);
+		fundingService = new FundingService(fundingDAO);
 	}
 
-	private static void start(){
+	private static void start() {
 		while(true) {
-			if(UserService.isCurrentUserLoggedIn()) { //if logged in.
+			if(userService.isCurrentUserLoggedIn()) { //logged in
 				ShowPage.showMainMenuPage();
 				int input = UserInput.menuInput();
+				try{
+					if(input<1 || input>5)
+						throw new IndexOutOfBoundsException();
+				} catch (IndexOutOfBoundsException e){
+					System.out.println(e.getMessage());
+				}
 				switch(input) {
-					case 1:
-						ShowPage.showRegisterProductPage();
-						String registerProductInput = UserInput.registerProductInput();
-						productDAO.addProduct(new Product(registerProductInput));
+					case 1: //1.상품 등록하기
+						ProductView.showRegisterProduct(productDAO);
 						break;
-					case 2:
-						ShowPage.showProductListPage();
-						if(productDAO.getProducts().isEmpty()){
-							System.out.println("죄송합니다. 상품이 존재하지 않습니다.");
-							break;
-						}
-						productDAO.getProductList();
-						Product product = productDAO.getProduct(UserInput.menuInput());
-						if(UserInput.isFunding(product)){ // funding yes!
-							userDAO.fund(product);
-						}//else 일때 뭘해야할까
+					case 2: //2.펀딩하기
+						ProductView.showProductsList(productDAO);
+						if(productDAO.getProducts().isEmpty()) break; //상품이 하나도 없으면
+						int productIndex = UserInput.menuInput();
+						FundingView.showFunding(userService, productService, fundingDAO, productIndex);
 						break;
-					case 3:
+					case 3: //3.펀딩 취소하기
 						ShowPage.showCancelFundingPage();
-						System.out.println("size:"+productDAO.getProducts().size());
-						if(productDAO.getProducts().isEmpty()){
-							System.out.println("죄송합니다. 펀딩 내역이 존재하지 않습니다.");
-							break;
-						}
-						UTIL.UserService.showFundingHistory();
-						Product cancelProduct =  UTIL.UserService.getCurrentUser().getFundingHistory().get(UserInput.menuInput()-1);
-						userDAO.cancelFunding(cancelProduct);
+						FundingView.showFundingProductList(fundingDAO, userService.getCurrentUser());
+						if(fundingDAO.getFundingProductList(userService.getCurrentUser()).isEmpty()) break; //펀딩내역이 없으면..
+						int fundingIndex = UserInput.menuInput();
+						FundingView.showCancelFunding(userService, productService, fundingService, fundingDAO, fundingIndex);
 						break;
-					case 4:
+					case 4: //4.펀딩내역 조회하기
 						ShowPage.showFundingListPage();
-						if(productDAO.getProducts().isEmpty()){
-							System.out.println("죄송합니다. 펀딩 내역이 존재하지 않습니다.");
-							break;
-						}
-						UTIL.UserService.showFundingHistory();
+						FundingView.showFundingProductList(fundingDAO, userService.getCurrentUser());
 						break;
-					case 5:
-						ShowPage.showDepositPage();
-						userDAO.deposit(UserInput.depositInput());
+					case 5: //5.충전하기
+						UserView.showDeposit(userService);
 						break;
 				}
-
-
 			}else {//login failed
 				ShowPage.showLogInMenuPage();
 				int input = UserInput.menuInput();
+				try{
+					if(input<1 || input>2)
+						throw new IndexOutOfBoundsException();
+				} catch (IndexOutOfBoundsException e){
+					System.out.println(e.getMessage());
+				}
 
 				switch(input) {
-					case 1:
-						ShowPage.showSignInPage();
-						String signInInput = UserInput.signInUserInput();
-						userDAO.addUser(new User(signInInput));
-						ShowPage.showSuccessSignInPage();
+					case 1: //회원가입
+						UserView.showSignIn(userDAO);
 						break;
-					case 2:
-						ShowPage.showLogInPage();
-						String logInInput = UserInput.signInUserInput();
-						userDAO.logIn(logInInput);
+					case 2: //로그인
+						UserView.showLogin(userService);
 						break;
 				}
 			}
