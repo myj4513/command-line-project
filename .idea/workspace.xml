@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b102c577-58ed-487e-939c-10a68108f45b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/UserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/UserInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/FundingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/FundingDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/SHA256.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/SHA256.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/FundingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FundingView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ProductView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/Index" />
+        <entry key="$PROJECT_DIR$" value="feature/Encryption" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -100,8 +103,9 @@
       <list>
         <item itemvalue="Application.Index" />
         <item itemvalue="Application.User" />
-        <item itemvalue="Application.SHA256" />
         <item itemvalue="Application.test" />
+        <item itemvalue="Application.SHA256" />
+        <item itemvalue="Application.Index" />
       </list>
     </recent_temporary>
   </component>
@@ -127,16 +131,10 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/Encryption" />
+                        <option value="feature/Encrytion" />
                       </list>
                     </value>
                   </entry>
-                </map>
-              </option>
-              <option name="COLUMN_ID_WIDTH">
-                <map>
-                  <entry key="Table.Default.Author.ColumnIdWidth" value="101" />
-                  <entry key="Table.Default.Date.ColumnIdWidth" value="100" />
                 </map>
               </option>
             </State>

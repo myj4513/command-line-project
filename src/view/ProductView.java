@@ -15,12 +15,8 @@ public class ProductView {
             System.out.println("상품이 존재하지 않습니다.");
             return;
         }
-        Iterator it = productDAO.getProductsIterator();
-        int count = 0;
-        while(it.hasNext()){
-            Product product = (Product)it.next();
-            System.out.println(++count+"."+product.getName());
-        }
+        List<Product> list = productDAO.getProducts();
+        list.stream().forEach(p->System.out.println(list.indexOf(p)+1+"."+p.getName()));
     }
 
     public static void showRegisterProduct(ProductDAO productDAO){
