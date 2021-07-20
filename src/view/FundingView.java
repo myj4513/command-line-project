@@ -4,6 +4,8 @@ import dto.*;
 import java.util.*;
 import dao.FundingDAO;
 import java.time.format.*;
+import java.util.stream.IntStream;
+
 import exceptions.InvalidValueException;
 import exceptions.NotEnoughMoneyException;
 import exceptions.IndexOutOfBoundsException;
@@ -15,12 +17,7 @@ public class FundingView {
 
     public static void showSponsor(FundingDAO fundingDAO, Product product){
         List<Funding> list = fundingDAO.getSponsor(product);
-        Iterator it = list.iterator();
-        while(it.hasNext()){
-            int count = 0;
-            Funding funding = (Funding)it.next();
-            System.out.println(++count+"."+funding.getUser().getId()+"   "+funding.getTime().format(formatter));
-        }
+        list.stream().forEach(f->System.out.println(list.indexOf(f)+1+"."+f.getUser().getId()+"   "+f.getTime().format(formatter)));
     }
 
     public static void showFundingProductList(FundingDAO fundingDAO, User user){
@@ -29,12 +26,7 @@ public class FundingView {
             System.out.println("펀딩 내역이 존재하지 않습니다.");
             return;
         }
-        Iterator it = list.iterator();
-        int count = 0;
-        while(it.hasNext()){
-            Funding funding = (Funding)it.next();
-            System.out.println(++count+". 상품명 : "+funding.getProduct().getName()+"   펀딩일시 : "+funding.getTime().format(formatter));
-        }
+        list.stream().forEach(f->System.out.println(list.indexOf(f)+1+"."+f.getProduct().getName()+"   펀딩일시 : "+f.getTime().format(formatter)));
     }
 
     public static void showFunding(UserService userService, ProductService productService, FundingDAO fundingDAO, int index){

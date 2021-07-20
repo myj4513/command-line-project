@@ -1,6 +1,8 @@
 package dao;
 
 import java.util.*;
+import java.util.stream.Stream;
+
 import dto.*;
 import exceptions.IndexOutOfBoundsException;
 
@@ -17,25 +19,13 @@ public class FundingDAO {
 
     public List<Funding> getSponsor(Product product){
         List<Funding> tmp = new ArrayList<Funding>();
-        Iterator it = fundings.iterator();
-        while(it.hasNext()){
-            Funding funding = (Funding)it.next();
-            if(funding.getProduct().equals(product)){
-                tmp.add(funding);
-            }
-        }
+        fundings.stream().filter(s->s.getProduct().equals(product)).forEach(s->tmp.add(s));
         return tmp;
     }
 
     public List<Funding> getFundingProductList(User user){
         List<Funding> tmp = new ArrayList<Funding>();
-        Iterator it = fundings.iterator();
-        while(it.hasNext()){
-            Funding funding = (Funding)it.next();
-            if(funding.getUser().equals(user)){
-                tmp.add(funding);
-            }
-        }
+        fundings.stream().filter(s->s.getUser().equals(user)).forEach(s->tmp.add(s));
         return tmp;
     }
 
