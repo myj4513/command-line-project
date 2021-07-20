@@ -81,7 +81,7 @@ public class Index {
 
 				switch(input) {
 					case 1: //회원가입
-						UserView.showSignIn(userDAO);
+						UserView.showSignIn(userService);
 						break;
 					case 2: //로그인
 						UserView.showLogin(userService);

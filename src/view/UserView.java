@@ -1,10 +1,10 @@
 package view;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import service.UserService;
-import dao.UserDAO;
-import dto.User;
 import exceptions.*;
+import util.SHA256;
 
 public class UserView {
     static Scanner s = new Scanner(System.in);
@@ -52,7 +52,7 @@ public class UserView {
         }
     }
 
-    public static void showSignIn(UserDAO userDAO) {
+    public static void showSignIn(UserService userService) {
         ShowPage.drawLine();
         System.out.println("[회원가입]\n");
         System.out.print("아이디 : ");
@@ -61,7 +61,8 @@ public class UserView {
         String password = s.nextLine();
 
         try {
-            userDAO.addUser(new User(id, password));
+            userService.signIn(userService.userDAO, id, password);
+            System.out.println("회원가입이 되었습니다.");
         } catch (IdAlreadyExistsException e) {
             System.out.println(e.getMessage());
         }
