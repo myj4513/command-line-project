@@ -7,6 +7,7 @@ import dao.UserDAO;
 import dto.User;
 import exceptions.*;
 import util.SHA256;
+import util.UserInput;
 
 public class UserView {
     static Scanner s = new Scanner(System.in);
@@ -40,12 +41,7 @@ public class UserView {
         System.out.println();
         int amount = 0;
         while(amount==0){
-            try{
-                System.out.print("충전금액 : ");
-                amount = Integer.parseInt(s.nextLine());
-            } catch (NumberFormatException e){
-                System.out.println("올바르지 않은 입력입니다.");
-            }
+            amount = UserInput.handledIntegerInput("충전금액 : ");
         }
         System.out.println();
         try{

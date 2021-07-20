@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5975530f-0b55-4302-b63a-649a59f45a1f" name="Default Changelist" comment="">
+    <list default="true" id="b102c577-58ed-487e-939c-10a68108f45b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/DTO/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/DTO/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/SERVICE/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/SERVICE/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/FundingDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/FundingDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/Funding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/Funding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/UserInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/UserInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ProductView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ProductView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +53,7 @@
       <recent name="C:\Users\문예준\eclipse-workspace\CommandLineProject" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.User">
+  <component name="RunManager" selected="Application.Index">
     <configuration name="Index" type="Application" factoryName="Application" temporary="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -102,8 +98,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.User" />
         <item itemvalue="Application.Index" />
+        <item itemvalue="Application.User" />
         <item itemvalue="Application.SHA256" />
         <item itemvalue="Application.test" />
       </list>
@@ -135,6 +131,12 @@
                       </list>
                     </value>
                   </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="101" />
+                  <entry key="Table.Default.Date.ColumnIdWidth" value="100" />
                 </map>
               </option>
             </State>

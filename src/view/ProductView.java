@@ -3,6 +3,7 @@ package view;
 import dao.*;
 import java.util.*;
 import dto.Product;
+import util.UserInput;
 
 public class ProductView {
     static Scanner s = new Scanner(System.in);
@@ -30,20 +31,10 @@ public class ProductView {
         int goalAmount = 0;
         int fundingPrice = 0;
         while(goalAmount == 0){
-            try{
-                System.out.print("목표액 : ");
-                goalAmount = Integer.parseInt(s.nextLine());
-            } catch(NumberFormatException e){
-                System.out.println("올바르지 않은 입력입니다.");
-            }
+            goalAmount = UserInput.handledIntegerInput("목표액 : ");
         }
         while(fundingPrice == 0){
-            System.out.print("금액 : ");
-            try{
-                fundingPrice = Integer.parseInt(s.nextLine());
-            } catch (NumberFormatException e){
-                System.out.println("올바르지 않은 입력입니다.");
-            }
+            fundingPrice = UserInput.handledIntegerInput("금액 : ");
         }
         Product product = new Product(name, goalAmount, fundingPrice);
         productDAO.addProduct(product);
